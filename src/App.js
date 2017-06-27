@@ -1,35 +1,30 @@
 import React, { Component } from 'react';
-import { Grid, Navbar, Jumbotron, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import Login from './Login';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar inverse fixedTop>
-          <Grid>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <a href="/">React App</a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-          </Grid>
-        </Navbar>
-        <Jumbotron>
-          <Grid>
-            <h1>Welcome to React</h1>
-            <p>
-              <Button
-                bsStyle="success"
-                bsSize="large"
-                href="http://react-bootstrap.github.io/components.html"
-                target="_blank">
-                View React Bootstrap Docs
-              </Button>
-            </p>
-          </Grid>
-        </Jumbotron>
-      </div>
+      <Router>
+        <div>
+          <Navbar inverse fixedTop>
+              <Navbar.Header>
+                <Navbar.Brand>
+                  <Link to="/">Home</Link>
+                </Navbar.Brand>
+                <Navbar.Brand>
+                  <Link to="/login">Login</Link>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+              </Navbar.Header>
+          </Navbar>
+
+          <Route exact path="/" component={Home}/>
+          <Route path="/login" component={Login}/>
+        </div>
+      </Router>
     );
   }
 }
